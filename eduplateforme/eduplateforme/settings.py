@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_NAME', 'eduplateforme'),
         'USER': os.getenv('DATABASE_USER', 'eduplateforme'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD', 'eduplateforme'),
-        'HOST': os.getenv('DATABASE_HOST', 'db'),
+        'HOST': os.getenv('DATABASE_HOST', 'db'),    # IP de ta VM a mettre ici
         'PORT': os.getenv('DATABASE_PORT', '3306'),
     }
 }
