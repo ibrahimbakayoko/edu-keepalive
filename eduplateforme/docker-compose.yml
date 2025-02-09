@@ -46,9 +46,10 @@ services:
   # HAProxy service for MASTER
   haproxy-master:
     build: ./haproxy
-    network_mode: "host"  # Utilisation du réseau de l'hôte
+    networks:
+      - webnet
     ports:
-      - "80:80"  # HAProxy écoute sur le port 80
+      - "80:80"  # HAProxy listens on port 80
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     depends_on:
@@ -56,14 +57,15 @@ services:
       - web2
       - web3
     environment:
-      - KEEPALIVED_INTERFACE=eth0  # Interface pour Keepalived
+      - KEEPALIVED_INTERFACE=eth0  # Interface for Keepalived
 
   # HAProxy service for BACKUP
   haproxy-backup:
     build: ./haproxy
-    network_mode: "host"  # Utilisation du réseau de l'hôte
+    networks:
+      - webnet
     ports:
-      - "8080:80"  # HAProxy écoute sur le port 8080 en mode backup
+      - "8080:80"  # HAProxy listens on port 8080, backup mode
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     depends_on:
@@ -71,15 +73,16 @@ services:
       - web2
       - web3
     environment:
-      - KEEPALIVED_INTERFACE=eth0  # Interface pour Keepalived
+      - KEEPALIVED_INTERFACE=eth0  # Interface for Keepalived
 
   # Keepalived service for MASTER (VIP holder)
   keepalived-master:
     image: osixia/keepalived:latest
-    network_mode: "host"  # Utilisation du réseau de l'hôte
+    networks:
+      - webnet
     environment:
       - KEEPALIVED_INTERFACE=eth0  # Interface réseau Docker
-      - KEEPALIVED_VIRTUAL_IPS=192.168.1.169 # IP virtuelle
+      - KEEPALIVED_VIRTUAL_IPS=172.19.0.7        #192.168.1.200  # IP virtuelle
       - KEEPALIVED_UNICAST_PEERS=keepalived-backup  # Lien avec le conteneur BACKUP
       - KEEPALIVED_VRRP_INSTANCE=VI_1
       - KEEPALIVED_PRIORITY=101  # Priorité plus élevée pour MASTER
@@ -91,10 +94,11 @@ services:
   # Keepalived service for BACKUP (Failover in case MASTER fails)
   keepalived-backup:
     image: osixia/keepalived:latest
-    network_mode: "host"  # Utilisation du réseau de l'hôte
+    networks:
+      - webnet
     environment:
       - KEEPALIVED_INTERFACE=eth0
-      - KEEPALIVED_VIRTUAL_IPS=192.168.1.169  # L'IP virtuelle partagée avec le MASTER
+      - KEEPALIVED_VIRTUAL_IPS=172.19.0.7       #192.168.1.200  # L'IP virtuelle partagée avec le MASTER
       - KEEPALIVED_UNICAST_PEERS=keepalived-master  # Lien avec le conteneur MASTER
       - KEEPALIVED_VRRP_INSTANCE=VI_1
       - KEEPALIVED_PRIORITY=100  # Priorité inférieure pour BACKUP
