@@ -65,7 +65,7 @@ services:
     networks:
       - webnet
     ports:
-      - "80:80"  # HAProxy listens on port 8080, backup mode
+      - "8080:80"  # HAProxy listens on port 8080, backup mode
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     depends_on:
