@@ -10,7 +10,7 @@ services:
       - DATABASE_NAME=eduplateforme
       - DATABASE_USER=eduplateforme
       - DATABASE_PASSWORD=eduplateforme
-      - DATABASE_HOST=192.168.56.10
+      - DATABASE_HOST=192.168.1.168
       - DATABASE_PORT=3306
     volumes:
       - media_data:/app/media
@@ -24,7 +24,7 @@ services:
       - DATABASE_NAME=eduplateforme
       - DATABASE_USER=eduplateforme
       - DATABASE_PASSWORD=eduplateforme
-      - DATABASE_HOST=192.168.56.10
+      - DATABASE_HOST=192.168.1.168
       - DATABASE_PORT=3306
     volumes:
       - media_data:/app/media
@@ -38,7 +38,7 @@ services:
       - DATABASE_NAME=eduplateforme
       - DATABASE_USER=eduplateforme
       - DATABASE_PASSWORD=eduplateforme
-      - DATABASE_HOST=192.168.56.10
+      - DATABASE_HOST=192.168.1.168
       - DATABASE_PORT=3306
     volumes:
       - media_data:/app/media
