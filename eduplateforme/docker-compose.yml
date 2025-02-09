@@ -82,7 +82,7 @@ services:
       - webnet
     environment:
       - KEEPALIVED_INTERFACE=eth0  # Interface réseau Docker
-      - KEEPALIVED_VIRTUAL_IPS=192.168.1.200  # IP virtuelle
+      - KEEPALIVED_VIRTUAL_IPS=172.19.0.7        #192.168.1.200  # IP virtuelle
       - KEEPALIVED_UNICAST_PEERS=keepalived-backup  # Lien avec le conteneur BACKUP
       - KEEPALIVED_VRRP_INSTANCE=VI_1
       - KEEPALIVED_PRIORITY=101  # Priorité plus élevée pour MASTER
@@ -98,7 +98,7 @@ services:
       - webnet
     environment:
       - KEEPALIVED_INTERFACE=eth0
-      - KEEPALIVED_VIRTUAL_IPS=192.168.1.200  # L'IP virtuelle partagée avec le MASTER
+      - KEEPALIVED_VIRTUAL_IPS=172.19.0.7       #192.168.1.200  # L'IP virtuelle partagée avec le MASTER
       - KEEPALIVED_UNICAST_PEERS=keepalived-master  # Lien avec le conteneur MASTER
       - KEEPALIVED_VRRP_INSTANCE=VI_1
       - KEEPALIVED_PRIORITY=100  # Priorité inférieure pour BACKUP
