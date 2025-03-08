@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copier les fichiers nécessaires pour l'installation des dépendances Python
-COPY requirements.txt /app/
+COPY eduplateforme/requirements.txt /app/
 
 # Installer les dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Ajouter un script Python pour attendre que la base de données soit prête
-#COPY wait_for_db.py /app/
+COPY eduplateforme/wait_for_db.py /app/
 
 # Exposer le port pour l'application Django
 # EXPOSE 8000
