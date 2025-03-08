@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Ajouter un script Python pour attendre que la base de données soit prête
-COPY wait_for_db.py /app/
+#COPY wait_for_db.py /app/
 
 # Exposer le port pour l'application Django
 # EXPOSE 8000
