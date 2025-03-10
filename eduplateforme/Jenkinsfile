@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'dnais1210/edu-keepalive'
         DOCKER_CREDENTIALS = 'docker-hub-credentials'
-        KUBE_CONFIG = '/root/kubeconfig' // Chemin vers ton fichier kubeconfig
+        KUBECONFIG = '/root/kubeconfig' // Chemin vers ton fichier kubeconfig
     }
 
     stages {
