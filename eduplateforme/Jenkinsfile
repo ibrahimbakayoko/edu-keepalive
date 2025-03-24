@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'dnais1210/edu-keepalive'
+        DOCKER_IMAGE = 'dnais1210/edu-plateform'
         DOCKER_CREDENTIALS = 'docker-hub-credentials'
-        KUBECONFIG = '/var/kubeconfig' // Chemin vers ton fichier kubeconfig
+        #KUBECONFIG = '/var/kubeconfig' // Chemin vers ton fichier kubeconfig
     }
 
     stages {
