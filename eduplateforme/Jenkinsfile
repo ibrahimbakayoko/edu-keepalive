@@ -32,14 +32,14 @@ pipeline {
             }
         }
 
-//         stage('Déployer sur Kubernetes') {
-//             steps {
-//                 script {
-//                      // sh  'kubectl get nodes'
+         stage('Déployer sur Kubernetes') {
+             steps {
+                 script {
+                       sh  'echo "deploiment sur kuberbates"'
 //                    // sh 'kubectl apply -f k8s/deployment.yaml'
 //                    //  sh 'kubectl apply -f k8s/service.yaml'
-//                 }
-//             }
-//        }
+                 }
+             }
+        }
     }
 }
